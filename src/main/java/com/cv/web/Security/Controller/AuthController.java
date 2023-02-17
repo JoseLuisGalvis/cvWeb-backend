@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://cvweb-9f70e.web.app/")
+@CrossOrigin(origins = "https://cvweb-9f70e.web.app")
 //@CrossOrigin
 public class AuthController {
     @Autowired
@@ -47,7 +47,7 @@ public class AuthController {
     @PostMapping("/nuevo")
     public ResponseEntity<?> nuevo(@Valid @RequestBody NuevoUsuario nuevoUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"),HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("Campos mal puestos o email invalido"), HttpStatus.BAD_REQUEST);
         
         if(usuarioService.existsByNombreUsuario(nuevoUsuario.getNombreUsuario()))
             return new ResponseEntity(new Mensaje("Ese nombre de usuario ya existe"), HttpStatus.BAD_REQUEST);
